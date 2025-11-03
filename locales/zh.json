@@ -1,0 +1,39 @@
+{
+  "home": {
+    "title": "首頁",
+    "heading": "歡迎來到首頁",
+    "welcome": "這是一個中文範例首頁。"
+  },
+  "company": {
+    "introTitle": "關於公司",
+    "introBody": "我們提供體育數據、賽事更新與遊戲清單。"
+  },
+  "information": {
+    "title": "資訊",
+    "heading": "資訊頁",
+    "welcome": "資訊頁內容（中文）。"
+  },
+  "profile": {
+    "title": "個人資料",
+    "heading": "您的個人資料",
+    "welcome": "個人頁面內容（中文）。"
+  },
+  "matches": {
+    "tiger": "虎隊",
+    "eagle": "鷹隊",
+    "dragon": "龍隊",
+    "wolves": "狼隊"
+  },
+ "homeBannerTitle": {
+    "client1": "Client One 運動平台",
+    "client2": "Client Two 博弈遊戲中心",
+    "default": "公共版首頁"
+  },
+  "notAuthorized": "您無權訪問此頁面。",
+  "defaultHomePage": "歡迎來到多租戶模擬博弈平台。此版本僅供展示不同客戶界面設計的架構範例。",
+  "soccer": "足球", 
+  "basketball": "籃球", 
+  "tennis": "網球", 
+  "baseball": "棒球"
+}
+

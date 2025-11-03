@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Multi-Tenant Demo Project
 
-## Getting Started
+This is a simple multi-tenant website demo project built to display different website layouts and themes based on the domain name.
 
-First, run the development server:
+For example:
 
-```bash
+client1.local.test → shows Client 1’s site
+
+client2.local.test → shows Client 2’s site
+
+local.test / localhost → shows the default site
+
+The purpose of this project is to explore how to structure and configure a front-end app with multiple tenants (domains) using Next.js App Router.
+
+# Tech Stack
+
+Next.js (App Router)
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Node.js v18+
+
+# Project Structure
+.
+├── app/
+│   ├── (default)/
+│   │   ├── page.tsx                # Default home page (local.test / localhost)
+│   │   ├── information/page.tsx    # Default information page
+│   │   ├── profile/page.tsx        # Default profile page
+│   ├── layout.tsx                  # Global layout
+│   ├── globals.css
+│
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── TenantLayout.tsx        # Layout that dynamically loads tenant styles
+│   │
+│   ├── common/                     # Shared reusable components
+│   │   ├── Button.tsx
+│   │   ├── Logo.tsx
+│   │   └── Card.tsx
+│   │
+│   ├── HomePage/
+│   │   ├── Client1Home.tsx         # Homepage style for Client 1
+│   │   ├── Client2Home.tsx         # Homepage style for Client 2
+│   │   └── DefaultHome.tsx         # Default homepage style
+│
+├── lib/
+│   ├── tenantConfig.ts             # Tenant configuration file
+│
+├── package.json
+├── README.md
+└── tsconfig.json
+
+# Tenant Configuration Setup
+## Add Local Domain Entries
+
+Edit your local hosts file:
+
+sudo nano /etc/hosts
+
+
+Add the following lines at the end:
+
+127.0.0.1   local.test
+127.0.0.1   client1.local.test
+127.0.0.1   client2.local.test
+127.0.0.1   localhost
+
+
+## For Windows users, edit the file at
+C:\Windows\System32\drivers\etc\hosts.
+
+# Run the Project
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then visit the following URLs in your browser:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://local.test:3000
+ → Default home page
 
-## Learn More
+http://client1.local.test:3000
+ → Client 1’s home page
 
-To learn more about Next.js, take a look at the following resources:
+http://client2.local.test:3000
+ → Client 2’s home page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Tenant Configuration Example
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+/lib/tenantConfig.ts
 
-## Deploy on Vercel
+export const tenantConfig = {
+    default: {
+            id: 'default',
+            name: 'Public',
+            hostnames: ['local.test', '127.0.0.1', 'localhost'],
+            theme: {
+                brand: '#6b7280',
+                accent: '#374151',
+                text: '#0f172a',
+            },
+            routes: ['/', '/information', '/profile'],
+            titleSuffix: '— Public',
+            homeLayout: 'default',
+            layout: { mobileColumns: 1, desktopColumns: 3 },
+        },
+    client1: {
+            id: 'client1',
+            name: 'Client One',
+            hostnames: ['client1.local.test'],
+            theme: {
+                brand: '#0ea5e9',
+                accent: '#0369a1',
+                text: '#0f172a',
+            },
+            routes: ['/', '/information'],
+            titleSuffix: '— Client One',
+            homeLayout: 'sports',
+            layout: { mobileColumns: 2, desktopColumns: 6 },
+        },
+    client2: {
+            id: 'client2',
+            name: 'Client Two',
+            hostnames: ['client2.local.test'],
+            theme: {
+                brand: '#ef4444',
+                accent: '#b91c1c',
+                text: '#111827',
+            },
+            routes: ['/', '/profile'],
+            titleSuffix: '— Client Two',
+            homeLayout: 'slots',
+            layout: { mobileColumns: 1, desktopColumns: 4 },
+        },
+};
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The active tenant is detected based on the current hostname, and TenantLayout.tsx dynamically applies the corresponding theme and style.
+
+# Tenant Theme Overview
+Tenant Domain	Primary Color	Theme	Homepage Component
+local.test / localhost	Blue (#2563EB)	Light	DefaultHome
+client1.local.test	Orange (#F97316)	Light	Client1Home
+client2.local.test	Green (#16A34A)	Dark	Client2Home
+## Usage
+
+Start the development server.
+
+Visit the corresponding tenant domain in your browser.
+
+The app automatically loads tenant-specific colors, layouts, and content.
+
+Add more tenants by updating /lib/tenantConfig.ts.
+
+
+# 👩‍💻 Author
+This project was built as a personal side project to explore multi-tenant architecture and dynamic theming using Next.js.

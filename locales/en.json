@@ -1,0 +1,38 @@
+{
+  "home": {
+    "title": "Home",
+    "heading": "Welcome to the Home Page",
+    "welcome": "This is a sample English homepage."
+  },
+  "company": {
+    "introTitle": "About the Company",
+    "introBody": "We provide sports data, event updates, and game listings."
+  },
+  "information": {
+    "title": "Information",
+    "heading": "Information Page",
+    "welcome": "Information page content (English)."
+  },
+  "profile": {
+    "title": "Profile",
+    "heading": "Your Profile",
+    "welcome": "Profile page content (English)."
+  },
+  "matches": {
+    "tiger": "Tiger",
+    "eagle": "Eagle",
+    "dragon": "Dragon",
+    "wolves": "Wolves"
+  }, 
+  "homeBannerTitle": {
+    "client1": "Client One Sports Platform",
+    "client2": "Client Two: Gaming Center",
+    "default": "Public version home page"
+  }, 
+  "notAuthorized": "You are not authorized to view this page.",
+  "defaultHomePage":"Welcome to the multi-tenant simulation game platform. This version is only for showcasing architectural examples of different client interface designs.",
+  "soccer": "Soccer", 
+  "basketball": "Basketball", 
+  "tennis": "Tennis", 
+  "baseball": "Baseball"
+}

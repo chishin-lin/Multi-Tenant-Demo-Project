@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+.theme-blue {
+  --color-primary: #91b8f3;
+}
+
+.theme-red {
+  --color-primary: #f9adad;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
 }
 
 @theme inline {
@@ -15,12 +22,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--color-primary);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
